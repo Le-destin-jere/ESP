@@ -5,10 +5,10 @@
 *          Just for DTU module
 *          Show Debug Message When ESP8266 Module Start Push Pin13 Down
 ***********************************************************************/
-#include <ESP8266WiFi.h>       //wifi头文件
-#include <PubSubClient.h>    //client头文件用于建立MQTT连接
-#include <ArduinoJson.h>       //Json类型头文件
-#include <ACROBOTIC_SSD1306.h> //OLED驱动头文件
+#include <ESP8266WiFi.h>             //wifi头文件
+#include <PubSubClient.h>          //client头文件用于建立MQTT连接
+#include <ArduinoJson.h>             //Json类型头文件
+#include <ACROBOTIC_SSD1306.h>       //OLED驱动头文件
 /*连接WiFi名称和账号密码可配置 easyconnect 一键配网*/
 #define WIFI_SSID "Meizu215"
 #define WIFI_PASSWD "12345687" 
@@ -149,12 +149,14 @@ void callback(char *topic, byte *payload, unsigned int length)
    if(sw1_set == 0)
    {
      Serial.println("10");
+     col[5] = '0';
      digitalWrite(LEDpin, HIGH); //拉高电平
      //digitalRead(LEDpin);
    }
    else if(sw1_set == 1)
    {
      Serial.println("11");
+     col[5] = '1';
      digitalWrite(LEDpin, LOW); //拉低电平
    }
    else;
@@ -242,7 +244,7 @@ void SerialReciver()
  // char col[128] = "A2960110";
   int i = 0;
   while(Serial.available()>0) {
-  col[i] = Serial.read();                            //Serial.read();移除缓存区Serial.peek()不会
+  col[i] = Serial.read();      //Serial.read();移除缓存区Serial.peek()不会
   delay(2);
   i++;
   }
@@ -250,12 +252,12 @@ void SerialReciver()
  /***界面绘图***/
  void oledInitMenu()
  {
-  oled.clearDisplay();          // Clear screen
-  oled.drawBitmap(TempandHumiLogo, 1024);
-  oled.setTextXY(2,11);         // Set cursor position
-  oled.putString(" *C"); 
-  oled.setTextXY(4,11 );        // Set cursor position 
-  oled.putString(" %R");  
+     oled.clearDisplay();          // Clear screen
+     oled.drawBitmap(TempandHumiLogo, 1024);
+     oled.setTextXY(2,11);         // Set cursor position
+     oled.putString(" *C"); 
+     oled.setTextXY(4,11 );        // Set cursor position 
+     oled.putString(" %R");  
  }
  void oledRefrashData()
  {
