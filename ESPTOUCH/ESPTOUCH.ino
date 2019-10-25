@@ -8,7 +8,9 @@
 #include <ESP8266WiFi.h>             //wifi头文件
 #include <PubSubClient.h>            //client头文件用于建立MQTT连接
 #include <ArduinoJson.h>             //Json类型头文件
-#include <ACROBOTIC_SSD1306.h>       //OLED驱动头文件
+#include "bsp_lcd.h"
+//#include <ACROBOTIC_SSD1306.h>     //OLED驱动头文件
+
 /*连接WiFi名称和账号密码可配置 easyconnect 一键配网*/
 #define WIFI_SSID "Meizu215"
 #define WIFI_PASSWD "12345687" 
